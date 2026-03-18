@@ -1,4 +1,5 @@
 import './globals.css';
+import NoRightClick from '@/components/ui/NoRightClick';
 
 export const metadata = {
   title: 'Port de Québec — Kiosk',
@@ -8,7 +9,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fr">
-      <body>{children}</body>
+      <body>
+        <NoRightClick />
+        {children}
+      </body>
     </html>
   );
 }

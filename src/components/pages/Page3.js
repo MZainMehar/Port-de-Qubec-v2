@@ -4,7 +4,7 @@ import { useApp } from '@/lib/AppContext';
 import Header from '@/components/ui/Header';
 import TextBlock from '@/components/ui/TextBlock';
 import VideoPlayer from '@/components/ui/VideoPlayer';
-import BackButton from '@/components/ui/BackButton';
+import PageShell from '@/components/ui/PageShell';
 
 const CONTENT = {
   fr: {
@@ -22,28 +22,14 @@ export default function Page3() {
   const c = CONTENT[language] || CONTENT.fr;
 
   return (
-    <div style={{
-      position: 'absolute',
-      inset: 0,
-      background: '#fff',
-      display: 'flex',
-      flexDirection: 'column',
-    }}>
-      <div style={{ padding: '0 60px', flex: 1, overflowY: 'auto' }}>
-        <Header title={c.title} />
-
-        <div className="animate-fade-in stagger-1" style={{ marginBottom: 40 }}>
-          <VideoPlayer src="/videos/ForumCroisieres2024.mp4" controls />
-        </div>
-
-        <TextBlock maxHeight={620} className="animate-fade-in stagger-2">
-          <p className="text-body">{c.body}</p>
-        </TextBlock>
+    <PageShell>
+      <Header title={c.title} />
+      <div className="animate-fade-in stagger-1" style={{ marginBottom: 40 }}>
+        <VideoPlayer src="/videos/ForumCroisieres2024.mp4" controls />
       </div>
-
-      <div style={{ padding: '32px 60px 48px', flexShrink: 0, borderTop: '2px solid #e2e5e8' }}>
-        <BackButton />
-      </div>
-    </div>
+      <TextBlock maxHeight={620} className="animate-fade-in stagger-2">
+        <p className="text-body">{c.body}</p>
+      </TextBlock>
+    </PageShell>
   );
 }

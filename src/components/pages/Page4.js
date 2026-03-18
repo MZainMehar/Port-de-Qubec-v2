@@ -5,7 +5,7 @@ import Header from '@/components/ui/Header';
 import TextBlock from '@/components/ui/TextBlock';
 import VideoPlayer from '@/components/ui/VideoPlayer';
 import ImageGallery from '@/components/ui/ImageGallery';
-import BackButton from '@/components/ui/BackButton';
+import PageShell from '@/components/ui/PageShell';
 
 const CONTENT = {
   fr: {
@@ -31,36 +31,19 @@ export default function Page4() {
   const c = CONTENT[language] || CONTENT.fr;
 
   return (
-    <div style={{
-      position: 'absolute',
-      inset: 0,
-      background: '#fff',
-      display: 'flex',
-      flexDirection: 'column',
-    }}>
-      <div style={{ padding: '0 60px', flex: 1, overflowY: 'auto' }}>
-        <Header title={c.title} />
-
-        {/* Video */}
-        <div className="animate-fade-in stagger-1" style={{ marginBottom: 24 }}>
-          <VideoPlayer src="/videos/PortQc_PremiereCroisiere2025_V1.1.mp4" controls />
-        </div>
-
-        {/* Image */}
-        <div className="animate-fade-in stagger-2" style={{ marginBottom: 32 }}>
-          <ImageGallery images={IMAGES} variant="A" />
-        </div>
-
-        <TextBlock maxHeight={380} className="animate-fade-in stagger-3">
-          {c.paragraphs.map((p, i) => (
-            <p key={i} className="text-body" style={{ marginBottom: 28 }}>{p}</p>
-          ))}
-        </TextBlock>
+    <PageShell>
+      <Header title={c.title} />
+      <div className="animate-fade-in stagger-1" style={{ marginBottom: 24 }}>
+        <VideoPlayer src="/videos/PortQc_PremiereCroisiere2025_V1.1.mp4" controls />
       </div>
-
-      <div style={{ padding: '32px 60px 48px', flexShrink: 0, borderTop: '2px solid #e2e5e8' }}>
-        <BackButton />
+      <div className="animate-fade-in stagger-2" style={{ marginBottom: 32 }}>
+        <ImageGallery images={IMAGES} variant="A" />
       </div>
-    </div>
+      <TextBlock maxHeight={380} className="animate-fade-in stagger-3">
+        {c.paragraphs.map((p, i) => (
+          <p key={i} className="text-body" style={{ marginBottom: 28 }}>{p}</p>
+        ))}
+      </TextBlock>
+    </PageShell>
   );
 }
