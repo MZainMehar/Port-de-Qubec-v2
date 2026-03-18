@@ -1,0 +1,599 @@
+/* =============================================================
+   GLOBAL STYLES — Port de Québec Kiosk
+   ============================================================= */
+
+/* ── Font Declarations ──────────────────────────────────────── */
+@font-face {
+  font-family: 'BlenderPro';
+  src: url('/fonts/BlenderPro-Bold.woff2') format('woff2'),
+       url('/fonts/BlenderPro-Bold.woff') format('woff'),
+       url('/fonts/BlenderPro-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BlenderPro';
+  src: url('/fonts/BlenderPro-Medium.woff2') format('woff2'),
+       url('/fonts/BlenderPro-Medium.woff') format('woff'),
+       url('/fonts/BlenderPro-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BlenderPro';
+  src: url('/fonts/BlenderPro-Book.woff2') format('woff2'),
+       url('/fonts/BlenderPro-Book.woff') format('woff'),
+       url('/fonts/BlenderPro-Book.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cambon';
+  src: url('/fonts/Cambon-Regular.woff2') format('woff2'),
+       url('/fonts/Cambon-Regular.woff') format('woff'),
+       url('/fonts/Cambon-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cambon';
+  src: url('/fonts/Cambon-Medium.woff2') format('woff2'),
+       url('/fonts/Cambon-Medium.woff') format('woff'),
+       url('/fonts/Cambon-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cambon';
+  src: url('/fonts/Cambon-Bold.woff2') format('woff2'),
+       url('/fonts/Cambon-Bold.woff') format('woff'),
+       url('/fonts/Cambon-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Tailwind Base ──────────────────────────────────────────── */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS Custom Properties ──────────────────────────────────── */
+:root {
+  --port-blue: #0076B6;
+  --port-light-blue: #16BCEF;
+  --port-gray: #BCC3C8;
+  --port-dark: #3F4450;
+
+  --outer-margin: 60px;
+  --content-max-width: 960px;
+  --base-grid: 24px;
+
+  --sp-1: 8px;
+  --sp-2: 16px;
+  --sp-3: 24px;
+  --sp-4: 32px;
+  --sp-6: 48px;
+  --sp-8: 64px;
+
+  --artboard-w: 1080px;
+  --artboard-h: 1920px;
+}
+
+/* ── Reset & Base ───────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ── Artboard / Kiosk Layout ────────────────────────────────── */
+#__next {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+
+.artboard {
+  position: relative;
+  width: var(--artboard-w);
+  height: var(--artboard-h);
+  overflow: hidden;
+  background: #fff;
+  flex-shrink: 0;
+
+  /* Scale to viewport while preserving aspect ratio */
+  transform-origin: top center;
+}
+
+.artboard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ── Content Container ──────────────────────────────────────── */
+.content-container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--outer-margin);
+  padding-right: var(--outer-margin);
+}
+
+/* ── Typography Scale ───────────────────────────────────────── */
+.font-blender { font-family: 'BlenderPro', sans-serif; }
+.font-cambon  { font-family: 'Cambon', serif; }
+
+/* Page title */
+.text-page-title {
+  font-family: 'BlenderPro', sans-serif;
+  font-weight: 700;
+  font-size: 72px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  color: var(--port-dark);
+}
+
+/* Section title */
+.text-section-title {
+  font-family: 'BlenderPro', sans-serif;
+  font-weight: 700;
+  font-size: 52px;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  color: var(--port-dark);
+}
+
+/* Card title */
+.text-card-title {
+  font-family: 'BlenderPro', sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  color: var(--port-dark);
+}
+
+/* Body text — optimised for 1–2m reading distance */
+.text-body {
+  font-family: 'Cambon', serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.6;
+  color: var(--port-dark);
+}
+
+.text-body-sm {
+  font-family: 'Cambon', serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.55;
+  color: var(--port-dark);
+}
+
+.text-source {
+  font-family: 'Cambon', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--port-gray);
+}
+
+/* ── Button Styles ──────────────────────────────────────────── */
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 28px 40px;
+  background: var(--port-blue);
+  color: #fff;
+  font-family: 'BlenderPro', sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-primary:active {
+  background: #005a8e;
+  transform: scale(0.99);
+}
+
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 26px 40px;
+  background: transparent;
+  color: var(--port-blue);
+  font-family: 'BlenderPro', sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 3px solid var(--port-blue);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-secondary:active {
+  background: var(--port-blue);
+  color: #fff;
+}
+
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 32px;
+  background: transparent;
+  color: var(--port-dark);
+  font-family: 'BlenderPro', sans-serif;
+  font-weight: 700;
+  font-size: 34px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 3px solid var(--port-dark);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-back:active {
+  background: var(--port-dark);
+  color: #fff;
+}
+
+.btn-finish {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 80px;
+  background: var(--port-blue);
+  color: #fff;
+  font-family: 'BlenderPro', sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-finish:active {
+  background: #005a8e;
+}
+
+/* ── Page Transition ────────────────────────────────────────── */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+/* ── Scrollable Text Block ──────────────────────────────────── */
+.scrollable-text {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--port-gray) transparent;
+  border-left: 4px solid var(--port-light-blue);
+  padding-left: 32px;
+}
+
+.scrollable-text::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollable-text::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollable-text::-webkit-scrollbar-thumb {
+  background: var(--port-gray);
+  border-radius: 3px;
+}
+
+/* ── Gallery ────────────────────────────────────────────────── */
+.gallery-main {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  position: relative;
+  background: var(--port-dark);
+}
+
+.gallery-main img,
+.gallery-main video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-thumbs {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+
+.gallery-thumbs::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-thumb {
+  flex-shrink: 0;
+  width: 180px;
+  height: 120px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.gallery-thumb.active {
+  border-color: var(--port-light-blue);
+}
+
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Variant B gallery */
+.gallery-b {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 12px;
+}
+
+.gallery-b .gallery-side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gallery-b .gallery-side-item {
+  flex: 1;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.gallery-b .gallery-side-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Menu Cards ─────────────────────────────────────────────── */
+.menu-card {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 28px 32px;
+  background: #fff;
+  border: 2px solid #e8eaec;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.menu-card:active {
+  background: #f0f7fc;
+  border-color: var(--port-light-blue);
+}
+
+.menu-card-thumb {
+  width: 120px;
+  height: 90px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.menu-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.menu-card-title {
+  font-family: 'BlenderPro', sans-serif;
+  font-weight: 700;
+  font-size: 38px;
+  letter-spacing: 0.02em;
+  color: var(--port-dark);
+  flex: 1;
+}
+
+.menu-card-arrow {
+  color: var(--port-blue);
+  font-size: 40px;
+  flex-shrink: 0;
+}
+
+/* ── Biodiversity Sub-Grid ──────────────────────────────────── */
+.bio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.bio-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bio-card:active {
+  border-color: var(--port-light-blue);
+}
+
+.bio-card-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+
+.bio-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.bio-card:active .bio-card-img img {
+  transform: scale(1.03);
+}
+
+.bio-card-label {
+  padding: 16px;
+  background: var(--port-dark);
+  color: #fff;
+  font-family: 'BlenderPro', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+/* ── PDF Popup ──────────────────────────────────────────────── */
+.pdf-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.pdf-container {
+  width: 100%;
+  flex: 1;
+  background: #fff;
+  overflow: hidden;
+}
+
+.pdf-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.pdf-close {
+  margin-top: 24px;
+  padding: 20px 60px;
+  background: var(--port-blue);
+  color: #fff;
+  font-family: 'BlenderPro', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ── Idle Timeout Overlay ───────────────────────────────────── */
+.idle-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 6px;
+  background: var(--port-light-blue);
+  transition: width 1s linear;
+}
+
+/* ── Animations ─────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeInFast {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.animate-fade-in-fast {
+  animation: fadeInFast 0.25s ease forwards;
+}
+
+/* stagger utility */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.3s; }
+.stagger-7 { animation-delay: 0.35s; }
+.stagger-8 { animation-delay: 0.4s; }
